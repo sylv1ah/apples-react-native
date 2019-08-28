@@ -14,7 +14,9 @@ export default function HomeScreen({ navigation }) {
   const [value, setValue] = React.useState("");
   return (
     <View style={styles.container}>
-      <Text>hungry for apples</Text>
+      <Text style={{ fontFamily: "roiland", fontSize: 50 }}>
+        hungry for apples
+      </Text>
       <TextInput
         placeholder=" search for character..."
         onBlur={Keyboard.dismiss}
