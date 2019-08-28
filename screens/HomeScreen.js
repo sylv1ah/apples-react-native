@@ -7,30 +7,45 @@ import {
   TouchableOpacity,
   TextInput,
   Keyboard,
-  View
+  View,
+  ImageBackground
 } from "react-native";
+
+import BackgroundImage from "../components/BackgroundImage";
 
 export default function HomeScreen({ navigation }) {
   const [value, setValue] = React.useState("");
   return (
-    <View style={styles.container}>
-      <Text style={{ fontFamily: "roiland", fontSize: 50 }}>
-        hungry for apples
-      </Text>
-      <TextInput
-        placeholder=" search for character..."
-        onBlur={Keyboard.dismiss}
-        value={value}
-        onChangeText={value => setValue(value)}
-      />
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Results", { value })}
-      >
-        <View>
-          <Text>Search!</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
+    <ImageBackground
+      source={require("../assets/images/galaxy.jpg")}
+      style={styles.container}
+    >
+      <View style={styles.inner}>
+        <Text
+          style={{
+            fontFamily: "roiland",
+            fontSize: 50,
+            textAlign: "center",
+            color: "red"
+          }}
+        >
+          hungry for apples
+        </Text>
+        <TextInput
+          placeholder=" search for character..."
+          onBlur={Keyboard.dismiss}
+          value={value}
+          onChangeText={value => setValue(value)}
+        />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Results", { value })}
+        >
+          <View>
+            <Text>Search!</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
   );
 }
 
@@ -41,8 +56,16 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: 30
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  inner: {
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
+    flex: 1,
+    paddingTop: 50,
+    alignItems: "center",
+    width: "80%",
+    height: "80%"
   },
   tabBarInfoContainer: {
     position: "absolute",
