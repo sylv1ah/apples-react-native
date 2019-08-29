@@ -5,7 +5,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ScrollView
+  ScrollView,
+  ImageBackground
 } from "react-native";
 import axios from "axios";
 
@@ -29,23 +30,48 @@ export default function ResultsScreen(props) {
   }, []);
 
   return (
-    <ScrollView>
-      <Text>heres your results...</Text>
-      <Text>you searched for: {searchValue}</Text>
-      {characterList.map(char => {
-        return (
-          <CharacterItem
-            key={char.id}
-            image={char.image}
-            species={char.species}
-            location={char.location.name}
-            origin={char.origin.name}
-            episodes={char.episode}
-          >
-            {char.name}
-          </CharacterItem>
-        );
-      })}
-    </ScrollView>
+    <ImageBackground
+      source={require("../assets/images/galaxy.jpg")}
+      style={styles.container}
+    >
+      <ScrollView>
+        <Text style={styles.title}>
+          you searched for:{" "}
+          <Text style={styles.searchedValue}>{searchValue}</Text>
+        </Text>
+        {characterList.map(char => {
+          return (
+            <CharacterItem
+              key={char.id}
+              image={char.image}
+              species={char.species}
+              location={char.location.name}
+              origin={char.origin.name}
+              episodes={char.episode}
+            >
+              {char.name}
+            </CharacterItem>
+          );
+        })}
+      </ScrollView>
+    </ImageBackground>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  title: {
+    fontFamily: "techmono",
+    color: "white",
+    textAlign: "center",
+    fontSize: 20,
+    margin: 20
+  },
+  searchedValue: {
+    backgroundColor: "green"
+  }
+});

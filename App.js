@@ -35,7 +35,8 @@ async function loadResourcesAsync() {
       require("./assets/images/robot-prod.png")
     ]),
     Font.loadAsync({
-      roiland: require("./assets/fonts/Calligraphr-Regular.ttf")
+      roiland: require("./assets/fonts/Calligraphr-Regular.ttf"),
+      techmono: require("./assets/fonts/ShareTechMono-Regular.ttf")
     })
   ]);
 }

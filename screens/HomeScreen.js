@@ -11,8 +11,6 @@ import {
   ImageBackground
 } from "react-native";
 
-import BackgroundImage from "../components/BackgroundImage";
-
 export default function HomeScreen({ navigation }) {
   const [value, setValue] = React.useState("");
   return (
@@ -21,29 +19,27 @@ export default function HomeScreen({ navigation }) {
       style={styles.container}
     >
       <View style={styles.inner}>
-        <Text
-          style={{
-            fontFamily: "roiland",
-            fontSize: 50,
-            textAlign: "center",
-            color: "red"
-          }}
-        >
-          hungry for apples
-        </Text>
-        <TextInput
-          placeholder=" search for character..."
-          onBlur={Keyboard.dismiss}
-          value={value}
-          onChangeText={value => setValue(value)}
-        />
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Results", { value })}
-        >
-          <View>
-            <Text>Search!</Text>
-          </View>
-        </TouchableOpacity>
+        <Text style={styles.title}>hungry for apples</Text>
+        <Text style={styles.subTitle}>Rick and Morty Character Search</Text>
+        <View style={styles.searchForm}>
+          <Image source={require("../assets/images/greenorb.png")} />
+          <TextInput
+            style={styles.searchInput}
+            placeholder=" search for character..."
+            onBlur={Keyboard.dismiss}
+            value={value}
+            onChangeText={value => setValue(value)}
+          />
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Results", { value })}
+            style={styles.searchButton}
+          >
+            <View>
+              <Text>🔍</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.handle} />
       </View>
     </ImageBackground>
   );
@@ -59,32 +55,62 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
+  title: {
+    fontFamily: "roiland",
+    fontSize: 50,
+    textAlign: "center",
+    color: "red"
+  },
+  subTitle: {
+    color: "white",
+    fontFamily: "techmono",
+    fontSize: 20,
+    margin: 10,
+    textAlign: "center",
+    width: "100%"
+  },
   inner: {
-    backgroundColor: "rgba(255, 255, 255, 0.7)",
     flex: 1,
     paddingTop: 50,
     alignItems: "center",
-    width: "80%",
+    width: "90%",
     height: "80%"
   },
-  tabBarInfoContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3
-      },
-      android: {
-        elevation: 20
-      }
-    }),
+  searchForm: {
     alignItems: "center",
-    backgroundColor: "#fbfbfb",
-    paddingVertical: 20
+    justifyContent: "space-around",
+    backgroundColor: "#E7E0DB",
+    height: "55%",
+    width: "90%",
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5
+  },
+  searchInput: {
+    fontFamily: "techmono",
+    backgroundColor: "red",
+    borderWidth: 1,
+    borderColor: "black",
+    borderRadius: 3,
+    width: "80%",
+    fontSize: 20,
+    color: "white"
+  },
+  searchButton: {
+    backgroundColor: "grey",
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  handle: {
+    backgroundColor: "#E7E0DB",
+    alignItems: "center",
+    width: "30%",
+    height: "20%",
+    borderBottomRightRadius: 50,
+    borderBottomLeftRadius: 50
   }
 });
